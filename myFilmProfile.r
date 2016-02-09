@@ -94,7 +94,8 @@ for (j in url) {
           "",
           xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)))/100
     attribute.rating_dist = 
-        rbind(
+        c(
+          attribute.rating_dist,
           ifelse(
             length(xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)) == 0,
             NA,
