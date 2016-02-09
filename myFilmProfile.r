@@ -1,6 +1,6 @@
-################
-# my profile ###
-################
+########################################
+# what do you know about my film habit #
+########################################
 
 library(RCurl)
 library(XML)
@@ -87,13 +87,18 @@ for (j in url) {
           NA,
           xpathSApply(doc, "//div[@class='rating_sum']/a/span[@property='v:votes']", xmlValue)))
     
+    rating = 
+      as.numeric(
+        sub(
+          "%",
+          "",
+          xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)))/100
     attribute.rating_dist = 
-      rbind(
-        attribute.rating_dist,
-        ifelse(
-          length(xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)) == 0,
-          NA,
-          xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)))
+        rbind(
+          ifelse(
+            length(xpathSApply(doc, "//div[@class='rating_wrap clearbox']/span[@class='rating_per']", xmlValue)) == 0,
+            NA,
+            list(rating)))
     
     k = xpathSApply(doc, "//div[@id='info']/a[@target='_blank']", xmlGetAttr, 'href')
     link = k[grepl("imdb",k)]
@@ -106,5 +111,3 @@ for (j in url) {
           link))
   }
 }
-
- 
