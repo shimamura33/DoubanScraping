@@ -5,7 +5,7 @@
 library(RCurl)
 library(XML)
 
-url1 = "http://movie.douban.com/people/99975820/collect?start=" 
+url1 = "http://movie.douban.com/people/xxxx/collect?start=" 
 url2 = "&sort=time&rating=all&filter=all&mode=grid" 
 url = c()
 for (k in seq(from=0, to=145, by=15)) {
